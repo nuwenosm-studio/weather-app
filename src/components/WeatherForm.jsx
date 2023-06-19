@@ -9,6 +9,7 @@ const WeatherForm = ({cities, setCities}) => {
   const handleSearchChange = (e) => {
     setCity(e.target.value);
   };
+
   const passData = (city) => {
     const WEATHER_URL = `${WEATHER_API_URL}/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`;
     axios
@@ -34,8 +35,6 @@ const WeatherForm = ({cities, setCities}) => {
         alert("City not found");
       });
   };
-  
-
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       if (city.trim() !== "") {

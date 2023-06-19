@@ -20,7 +20,6 @@ function App() {
       </div>
       <WeatherForm cities={cities} setCities={setCities}/>
       <WeatherLists cities={cities} setCities={setCities}/>
-     
     </div>
   );
 }
