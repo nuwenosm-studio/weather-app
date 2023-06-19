@@ -27,6 +27,7 @@ const WeatherForm = ({cities, setCities}) => {
             tempHigh: Math.round(res.data.main.temp_max),
             tempLow: Math.round(res.data.main.temp_min),
           };
+          console.log(res.data)
           setCities((prevCities) => [...prevCities, cityData]);
         }
       })

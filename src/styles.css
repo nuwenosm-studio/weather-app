@@ -135,7 +135,6 @@ a {
   margin-bottom: var(--mp-container);
   border-radius: var(--br-container);
   border: 1px solid var(--clr-black);
-  cursor: pointer;
 
   display: grid;
   grid-template-columns: 60% 40%;
@@ -143,10 +142,16 @@ a {
 }
 .city_info {
   height: 100px;
+  cursor: pointer;
 }
 .city_name {
   font-size: var(--fs-l);
-  font-weight: var(--fw-bold);
+  font-weight: 800;
+  color: rgb(0, 97, 233);
+  transition: var(--transition-regular);
+}
+.city_info:hover .city_name {
+  color: rgb(253, 165, 0);
 }
 .weather_description {
   font-size: var(--fs-s);
@@ -200,5 +205,40 @@ a {
   transition: var(--transition-regular);
 }
 .degree_btn:hover {
+  background-color: rgb(253, 165, 0);
+}
+
+/*-------------------*/
+.modal {
+  position: fixed;
+  z-index: var(--z-top);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal_content {
+  position: absolute;
+  width: 420px;
+  min-height: 600px;
+  padding: var(--mp-container);
+  border-radius: var(--br-container);
+  background-color: var(--clr-white);
+}
+.modal_close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  transition: var(--transition-regular);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.modal_close:hover {
   background-color: rgb(253, 165, 0);
 }
