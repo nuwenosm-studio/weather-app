@@ -22,7 +22,7 @@ const CityItem = ({ city, index, convertTemperature, handleCityDelete }) => {
             <div className="city_info" onClick={openModal}>
                 <div className="city_name">{city.name}, {city.country}</div>
                 <div className="weather_description">{city.description}</div>
-                <img src={`icons/${city.icon}.png`} alt="" className="weather_icon" />
+                <img src={`icons/${city.icon}.PNG`} alt="" className="weather_icon" />
             </div>
 
             <div className="city_temp">
@@ -47,7 +47,7 @@ const CityItem = ({ city, index, convertTemperature, handleCityDelete }) => {
                             <div className="city_info">
                                 <div className="city_name">{city.name}</div>
                                 <div className="weather_description">{city.description}</div>
-                                <img src={`/icons/${city.icon}.png`} alt="" className="weather_icon" />
+                                <img src={`icons/${city.icon}.PNG`} alt="" className="weather_icon" />
                             </div>
                             <div className="city_temp">
                                 <div className="city_temp-avg">{convertTemperature(city.temp)}</div>
