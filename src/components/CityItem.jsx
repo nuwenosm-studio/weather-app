@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import ChartItem from "./ChartItem";
 
 const CityItem = ({ city, index, convertTemperature, handleCityDelete }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     
     const openModal = () => {
         setIsModalOpen(true);
-        console.log("open modal");
+        // console.log("open modal");
     };
     const closeModal = () => {
         setIsModalOpen(false);
-        console.log("close modal");
+        // console.log("close modal");
     };
     const handleModalClick = (event) => {
         event.stopPropagation();
@@ -44,11 +45,12 @@ const CityItem = ({ city, index, convertTemperature, handleCityDelete }) => {
                         </div>
                         <div className="modal_header">
                             <h2>{city.name}</h2>
-                        </div>
-                        <div className="modal_body">
                             <p>Country: {city.country}</p>
                             <p>Temperature: {convertTemperature(city.temp)}</p>
                             <p>Description: {city.description}</p>
+                        </div>
+                        <div className="modal_body">
+                            <ChartItem data={city.forecastData}/>
                         </div>
                     </div>
                 </div>

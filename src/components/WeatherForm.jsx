@@ -12,13 +12,15 @@ const WeatherForm = ({cities, setCities}) => {
 
   const passData = (city) => {
     const WEATHER_URL = `${WEATHER_API_URL}/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`;
+    let cityData = {};
+
     axios
       .get(WEATHER_URL)
       .then((res) => {
         if (res.data.cod === "404") {
           throw new Error("City not found");
         } else {
-          const cityData = {
+          cityData = {
             name: res.data.name,
             country: res.data.sys.country,
             description: res.data.weather[0].description,
@@ -26,10 +28,18 @@ const WeatherForm = ({cities, setCities}) => {
             temp: Math.round(res.data.main.temp),
             tempHigh: Math.round(res.data.main.temp_max),
             tempLow: Math.round(res.data.main.temp_min),
+            lat: res.data.coord.lat,
+            lon: res.data.coord.lon
           };
-          console.log(res.data)
-          setCities((prevCities) => [...prevCities, cityData]);
+          const WEATHER_FORECAST_URL = `${WEATHER_API_URL}/forecast?lat=${cityData.lat}&lon=${cityData.lon}&appid=${WEATHER_API_KEY}&units=metric`;
+          return axios.get(WEATHER_FORECAST_URL);
         }
+      })
+      .then((res) => {
+        const forecastData = res.data.list;
+        cityData.forecastData = forecastData;
+        setCities((prevCities) => [...prevCities, cityData]);
+        // console.log(cityData);
       })
       .catch((err) => {
         console.error(err);
