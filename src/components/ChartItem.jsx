@@ -1,14 +1,26 @@
 import { useState, useEffect } from 'react';
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+} from 'chart.js';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+);
 
 const ChartItem = ({ data }) => {
-  const WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const dayInAWeek = new Date().getDay();
-  const next5Days = WEEK_DAYS.slice(dayInAWeek, dayInAWeek + 5);
-  
+  const time9AM = "09:00:00";
+
   const [currentDay, setCurrentDay] = useState("");
   const [forecastDays, setForecastDays] = useState([]);
-
-  const time9AM = "09:00:00";
 
   useEffect(() => {
     const date = new Date();
@@ -22,24 +34,32 @@ const ChartItem = ({ data }) => {
     data.forEach(item => {
       let itemDay = item.dt_txt.split(" ")[0];
       let dayTime = item.dt_txt.split(" ")[1];
-      if (itemDay !== formattedDay && dayTime === time9AM) {
+      if (itemDay !== currentDay && dayTime === time9AM) {
         newForecastDays.push({
-          day: itemDay,
+          day: itemDay.substr(5,5),
           time: dayTime,
           temp: item.main.temp
         });
       }
     });
     setForecastDays(newForecastDays);
-  }, [data]);
+  }, [currentDay, data]);
+
+  const chartData = {
+    labels: forecastDays.map(day => day.day),
+    datasets: [
+      {
+        label: "°C at 9am",
+        data: forecastDays.map(day => day.temp),
+        borderColor: "rgb(0, 97, 233)",
+        backgroundColor: "rgb(253, 165, 0)"
+      }
+    ]
+  };
 
   return (
     <div className="chart_item">
-      {forecastDays.map((day, index) => (
-        <div className="day_weather" key={index}>
-          {day.time}
-        </div>
-      ))}
+      <Line data={chartData} />
     </div>
   )
 }

@@ -44,12 +44,21 @@ const CityItem = ({ city, index, convertTemperature, handleCityDelete }) => {
                             <AiOutlineCloseCircle fontSize="32px" />
                         </div>
                         <div className="modal_header">
-                            <h2>{city.name}</h2>
-                            <p>Country: {city.country}</p>
-                            <p>Temperature: {convertTemperature(city.temp)}</p>
-                            <p>Description: {city.description}</p>
+                            <div className="city_info">
+                                <div className="city_name">{city.name}</div>
+                                <div className="weather_description">{city.description}</div>
+                                <img src={`/icons/${city.icon}.png`} alt="" className="weather_icon" />
+                            </div>
+                            <div className="city_temp">
+                                <div className="city_temp-avg">{convertTemperature(city.temp)}</div>
+                                <div className="city_temp-extra">
+                                    <div className="city_temp-high">H: {convertTemperature(city.tempHigh)}</div>
+                                    <div className="city_temp-low">L: {convertTemperature(city.tempLow)}</div>
+                                </div>
+                            </div>
                         </div>
                         <div className="modal_body">
+                            Forecast in the next 5 days
                             <ChartItem data={city.forecastData}/>
                         </div>
                     </div>

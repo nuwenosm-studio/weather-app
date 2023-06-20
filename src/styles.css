@@ -3,6 +3,8 @@
   /* colors */
   --clr-black: #000000;
   --clr-white: #FFFFFF;
+  --clr-blue: #0061e9;
+  --clr-orange: #fd8700;
 
   /* font-family */
   --font-main: 'Nunito', sans-serif;
@@ -120,7 +122,6 @@ a {
 #weather_input:focus {
   outline: none;
 }
-
 .cities_list {
   width: 420px;
   display: flex;
@@ -147,11 +148,11 @@ a {
 .city_name {
   font-size: var(--fs-l);
   font-weight: 800;
-  color: rgb(0, 97, 233);
+  color: var(--clr-blue);
   transition: var(--transition-regular);
 }
 .city_info:hover .city_name {
-  color: rgb(253, 165, 0);
+  color: var(--clr-orange);
 }
 .weather_description {
   font-size: var(--fs-s);
@@ -186,7 +187,7 @@ a {
   place-items: center;
 }
 .weather_remove:hover {
-  background-color: rgb(253, 165, 0);
+  background-color: var(--clr-orange);
 }
 .degree_btn {
   cursor: pointer;
@@ -198,14 +199,14 @@ a {
   border: none;
   border-radius: var(--br-container);
   color: var(--clr-white);
-  background-color: rgb(0, 97, 233);
+  background-color: var(--clr-blue);
 
   font-size: var(--fs-m);
   font-weight: var(--fw-bold);
   transition: var(--transition-regular);
 }
 .degree_btn:hover {
-  background-color: rgb(253, 165, 0);
+  background-color: var(--clr-orange);
 }
 
 /*-------------------*/
@@ -224,7 +225,7 @@ a {
 .modal_content {
   position: absolute;
   width: 420px;
-  min-height: 600px;
+  height: 600px;
   padding: var(--mp-container);
   border-radius: var(--br-container);
   background-color: var(--clr-white);
@@ -240,5 +241,36 @@ a {
   place-items: center;
 }
 .modal_close:hover {
-  background-color: rgb(253, 165, 0);
+  background-color: var(--clr-orange);
+}
+.modal_header {
+  width: 100%;
+  margin-bottom: var(--mp-element);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal_header .city_info {
+  height: 160px;
+  display: grid;
+  place-items: center;
+}
+.modal_header .city_name {
+  font-size: var(--fs-xl);
+  color: var(--clr-black);
+  font-weight: var(--fw-bold);
+}
+.modal_header .weather_icon {
+  width: 80px;
+}
+.modal_header .city_temp-extra {
+  width: 150px;
+}
+.modal_body {
+  font-weight: 800;
+  text-align: center;
+  color:var(--clr-blue);
+}
+.chart_item {
+  margin-top: var(--mp-element);
 }
